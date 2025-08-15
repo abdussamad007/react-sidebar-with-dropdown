@@ -1,15 +1,35 @@
-import { Avatar, Drawer, List, Stack, Toolbar } from "@mui/material";
+import { Avatar, Button, Drawer, List, Stack, Toolbar } from "@mui/material";
 import assets from "../../assets";
 import colorConfigs from "../../configs/colorConfigs";
 import sizeConfigs from "../../configs/sizeConfigs";
 import appRoutes from "../../routes/appRoutes";
 import SidebarItem from "./SidebarItem";
 import SidebarItemCollapse from "./SidebarItemCollapse";
+import { useState } from "react";
 
 const Sidebar = () => {
+//const isDrawerOpen = true; // This should be replaced with actual state management for drawer open/close
+const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+
+   // Function to open the drawer
+   const handleDrawerOpen = () => {
+    setIsDrawerOpen(true);
+  };
+   // Function to close the drawer
+   const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
+  };
+  
   return (
+    <div>
+      {/* Add a button or some trigger to open the drawer */}
+    <Button onClick={handleDrawerOpen} >Open Drawer </Button>
     <Drawer
-      variant="permanent"
+      anchor="left"
+      open={isDrawerOpen}
+      onClose={handleDrawerClose}
+      variant="temporary"
       sx={{
         width: sizeConfigs.sidebar.width,
         flexShrink: 0,
@@ -43,6 +63,7 @@ const Sidebar = () => {
         ))}
       </List>
     </Drawer>
+    </div>
   );
 };
 
